@@ -1,5 +1,4 @@
-images/
-stb_image.h
-stb_image_write.h
-qoibench
-qoiconv
+
+.vscode/settings.json
+.vscode/c_cpp_properties.json
+.vscode/launch.json
