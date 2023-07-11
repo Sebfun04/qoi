@@ -26,14 +26,21 @@ typedef struct {
     uint8_t g; // Valeur du canal vert
     uint8_t b; // Valeur du canal bleu
     uint8_t a; // Valeur du canal alpha
-} pixel;
+} pixel_t;
+
+typedef struct {
+    uint8_t tag;
+    uint8_t red;
+    uint8_t green;
+    uint8_t blue;
+} qoi_op_rgb_t;
 
 // Structure pour un tableau de pixels
 typedef struct {
-    pixel pixels[64]; // Tableau de pixels
-} pixel_array;
+    pixel_t pixels[64]; // Tableau de pixels
+} pixel_array_t;
 
 
-int qoi_encode(pixel *pixels, int width, int height, uint8_t channels, uint8_t colorspace, FILE *out);
+int qoi_encode(pixel_t *pixels, int width, int height, uint8_t channels, uint8_t colorspace, FILE *out);
 void decode_qoi(FILE *input, FILE *output);
-void test_qoi();
+void print_binary_file(const char* filename);
