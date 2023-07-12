@@ -6,10 +6,10 @@
             "command": "gcc",
             "args": [
                 "-g",
-                "${workspaceFolder}/Fonction.c",
                 "${workspaceFolder}/main.c",
+                "${workspaceFolder}/Fonction.c",
                 "-o",
-                "${workspaceFolder}/myprogram"
+                "${workspaceFolder}/main"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"

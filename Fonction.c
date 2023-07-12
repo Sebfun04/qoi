@@ -1,7 +1,7 @@
 #include"Fonction.h"
 
 // Fonction pour encoder une image en QOI
-int qoi_encode(pixel_t *pixels, int width, int height, uint8_t channels, uint8_t colorspace, FILE *out) {
+int qoi_encode(pixel_t *pixels, uint32_t width, uint32_t height, uint8_t channels, uint8_t colorspace, FILE *out) {
   qoi_header header = {QOI_MAGIC, width, height, channels, colorspace};
 
   if (fwrite(&header, sizeof(header), 1, out) != 1) {

@@ -41,6 +41,6 @@ typedef struct {
 } pixel_array_t;
 
 
-int qoi_encode(pixel_t *pixels, int width, int height, uint8_t channels, uint8_t colorspace, FILE *out);
+int qoi_encode(pixel_t *pixels, uint32_t width, uint32_t height, uint8_t channels, uint8_t colorspace, FILE *out);
 void decode_qoi(FILE *input, FILE *output);
 void print_binary_file(const char* filename);
