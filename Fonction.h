@@ -7,9 +7,9 @@
 #define QOI_OP_RGB 0xFE
 #define QOI_OP_RGBA 0xFF
 #define QOI_OP_INDEX 0x00
-#define QOI_OP_DIFF 0x01
-#define QOI_OP_LUMA 0x02
-#define QOI_OP_RUN 0x03
+#define QOI_OP_DIFF 0x40
+#define QOI_OP_LUMA 0x80
+#define QOI_OP_RUN 0xC0
 
 // Structure pour le header QOI
 typedef struct {
