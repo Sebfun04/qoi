@@ -19,7 +19,7 @@ class App(tk.Tk):
         
         # Format des fenêtres
         width = 300
-        height = 200
+        height = 150
         self.title("Interface de l'opérateur")
         self.resizable( False, False)
         screen_width = self.winfo_screenwidth()
@@ -49,7 +49,7 @@ class App(tk.Tk):
         self.frames = {}
 
         # Création de frames
-        for F in (MainPage,):
+        for F in (MainPage, LoadingPage):
             frame = F(container, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
@@ -80,14 +80,28 @@ class MainPage(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.controller = controller
 
-        # Boutons pour envoyer les chiffres 1, 2, ou 3
-        button1 = ttk.Button(self, text="Decode QOI", command=lambda: self.controller.send(b'1'))
-        button2 = ttk.Button(self, text="Encode QOI", command=lambda: self.controller.send(b'2'))
-        button3 = ttk.Button(self, text="Affiche VGA", command=lambda: self.controller.send(b'3'))
+        # Boutons pour envoyer les chiffres 1, 2, ou 3 et montrer la page de chargement
+        button1 = ttk.Button(self, text="Decode QOI", command=lambda: [self.controller.send(b'1'), self.controller.show_frame(LoadingPage)])
+        button2 = ttk.Button(self, text="Encode QOI", command=lambda: [self.controller.send(b'2'), self.controller.show_frame(LoadingPage)])
+        button3 = ttk.Button(self, text="Affiche VGA", command=lambda: [self.controller.send(b'3'), self.controller.show_frame(LoadingPage)])
 
         button1.pack(pady=10)
         button2.pack(pady=10)
         button3.pack(pady=10)
+
+
+class LoadingPage(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+
+        label = tk.Label(self, text="Loading...")
+        label.pack(pady=10,padx=10)
+
+        button1 = ttk.Button(self, text="Back to Main Menu",
+                            command=lambda: controller.show_frame(MainPage))
+        button1.pack()
+
 
 if __name__ == "__main__":
     app = App()
